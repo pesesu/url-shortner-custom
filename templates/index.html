@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+            font-family: 'Lato', sans-serif;
+        }
+
+        body {
+            position: relative;
+            box-sizing: border-box;
+            height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat !important;
+            background-size: cover !important; 
+            background:url({% static 'images/bg_image.jpg' %})
+            
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .brand {
+            background: rgba(0, 0, 0, 0.8) !important;
+            background: red;
+        }
+
+        .detail {
+            position: absolute;
+            top: 150px;
+            left: 40px;
+            color: rgb(241, 241, 210);
+            font-weight: 600;
+        }
+
+        .detail ul {
+            margin-left: 25px;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        h2 {
+            position: absolute;
+            top: 70px;
+            left: 50px;
+            font-size: 2.5rem;
+            background: -webkit-linear-gradient(#F58352, #D9F3F4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 5px;
+            text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+        }
+
+        .text-field {
+            width: 15rem;
+            padding: .2rem .5rem;
+            border-radius: 10px;
+            outline: none;
+            margin-right: .5rem;
+        }
+
+        .btn {
+            padding: .2rem 1rem .3rem;
+            background: orange;
+            border: None;
+            color: #f0efef;
+            border-radius: 5rem;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: rgba(orange, 0.5);
+        }
+
+        form {
+            position: absolute;
+            top: 320px;
+            left:50px;
+        }
+
+        .short-url {
+            margin-top: 3rem;
+            background: #e9e7e7;
+            padding: .5rem 3rem;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="brand">
+            <h2>DjangoUrlShortener</h2>
+        </div>
+
+        <div class="detail">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt, neque!</p>
+            <ul>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ul>
+        </div>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <input class="text-field" type="text" name="url" 
+             placeholder="https://www.codesdope.com/blog/article/25-creative-css3-text-shadow-effects-you-cant-miss/">
+            <input class="btn" type="submit" value="shorten">
+            {% if url %}
+            <div class="short-url">
+                <p>{{url}}</p>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
